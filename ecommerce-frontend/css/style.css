@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  header {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+  }
+  
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .product-card {
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .button {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  .button:hover {
+    background: #005bb5;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+
+
+  .product-detail {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .product-detail img {
+    max-width: 300px;
+    width: 100%;
+  }
+
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cart-total {
+    margin-top: 2rem;
+    text-align: right;
+  }
+  
+
+
+
+  
+  .products-grid-home {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 2rem; /* Increase gap for better spacing */
+    margin-top: 2rem;
+}
+
+.product-card-home {
+    background: #fff;
+    padding: 2rem; /* Increase padding for larger cards */
+    border: 1px solid #eee;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem; /* Slightly larger text */
+}
+
+.product-card-home img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem; /* Increase spacing below the image */
+}

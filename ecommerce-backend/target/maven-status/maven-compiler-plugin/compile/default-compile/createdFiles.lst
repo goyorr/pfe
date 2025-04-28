@@ -1,0 +1,8 @@
+com/myshop/ecommerce/config/WebConfig.class
+com/myshop/product/Product.class
+com/myshop/order/OrderController.class
+com/myshop/order/Order.class
+com/myshop/order/OrderRepository.class
+com/myshop/product/ProductController.class
+com/myshop/EcommerceBackendApplication.class
+com/myshop/product/ProductRepository.class
