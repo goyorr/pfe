@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyShop - Cart</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>MyShop</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="admin/index.html">Admin</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <h3 id="total-price"></h3>
+  
+  <div id="checkout-section">
+    <button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>
+  </div>
+</main>
+
+<footer class="container">
+  <p>&copy; 2025 MyShop.</p>
+</footer>
+
+<script src="js/cart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  loadCart();
+  
+  const checkoutBtn = document.getElementById('checkout-btn');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', function() {
+      window.location.href = 'checkout.html';
+    });
+  }
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyShop - Checkout</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    #checkout-form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    #checkout-form label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-top: 10px;
+    }
+
+    #checkout-form input {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #checkout-form button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #checkout-form button:hover {
+      background-color: #45a049;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>MyShop</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="admin/index.html">Admin</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h2>Checkout</h2>
+  <form id="checkout-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required><br>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" required><br>
+
+    <label for="postal-code">Postal Code:</label>
+    <input type="text" id="postal-code" name="postal-code" required><br>
+
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country" required><br>
+
+    <button type="submit">Place Order</button>
+  </form>
+</main>
+
+<footer class="container">
+  <p>&copy; 2025 MyShop.</p>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  document.getElementById('checkout-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Order placed successfully!');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyShop - Product</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s, visibility 0.5s;
+      z-index: 1000;
+    }
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    /* Disable button style for out of stock */
+    .out-of-stock {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>MyShop</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="admin/index.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="product-detail">
+      <!-- Image will be updated dynamically -->
+      <img id="product-image" src="" alt="Product Detail">
+      <div>
+        <!-- Product details will be updated dynamically -->
+        <h2 id="product-name"></h2>
+        <p><strong>Price:</strong> <span id="product-price"></span></p>
+        <p><strong>Stock:</strong> <span id="product-stock"></span> available</p>
+        <p id="product-description"></p>
+        <button id="add-to-cart-btn" class="button" onclick="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="container">
+    <p>&copy; 2025 MyShop.</p>
+  </footer>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast">Product added to cart!</div>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Fetch product ID from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    
+    const producttoadd = {
+      id: productId,
+      name: '',
+      price: 0,
+      stock: 0,
+      description: '',
+      img: ''
+    };
+    
+    // Fetch product data from backend API
+    fetchProductData();
+    
+    function fetchProductData() {
+      fetch(`http://localhost:8080/api/products?id=${productId}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data) {
+            const product = data;
+
+            producttoadd.name = product.name;
+            producttoadd.price = product.price;
+            producttoadd.stock = product.stock;
+            producttoadd.description = product.description;
+            producttoadd.img = product.img;
+
+            // Update the page with the product details
+            document.getElementById('product-name').textContent = product.name;
+            document.getElementById('product-price').textContent = `$${product.price.toFixed(2)}`;
+            document.getElementById('product-stock').textContent = product.stock;
+            document.getElementById('product-description').textContent = product.description;
+            document.getElementById('product-image').src = product.img;
+
+            // Disable button if stock is 0
+            if (product.stock <= 0) {
+              document.getElementById('add-to-cart-btn').disabled = true;
+              document.getElementById('add-to-cart-btn').classList.add('out-of-stock');
+            }
+          } else {
+            alert('Product not found!');
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching product data:', error);
+          alert('There was an error fetching the product details.');
+        });
+    }
+
+    function addToCart() {
+      if (!producttoadd.name || producttoadd.stock <= 0) {
+        showToast('Product is out of stock!');
+        return;
+      }
+
+      const product = {
+        id: productId,
+        name: producttoadd.name,
+        price: producttoadd.price,
+        quantity: 1,
+        img: producttoadd.img,
+      };
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      const existingProduct = cart.find(item => item.id === product.id);
+
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      updateProductStock(productId, producttoadd.stock - 1);
+
+      showToast('Product added to cart!');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    function updateProductStock(productId, newStock) {
+      fetch(`http://localhost:8080/api/products/${productId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          stock: newStock,
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data) {
+          console.log('Product stock updated successfully');
+          
+          document.getElementById('product-stock').textContent = newStock;
+          
+          if (newStock <= 0) {
+            document.getElementById('add-to-cart-btn').disabled = true;
+            document.getElementById('add-to-cart-btn').classList.add('out-of-stock');
+          }
+          
+          producttoadd.stock = newStock; 
+        } else {
+          console.error('Error updating product stock');
+        }
+      })
+      .catch(error => {
+        console.error('Error updating stock:', error);
+      });
+    }
+  </script>
+</body>
+</html>
