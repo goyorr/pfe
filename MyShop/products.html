@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body style="background-color: #534597;" >
 <header>
   <div class="container">
     <h1>MyShop</h1>
@@ -21,12 +21,16 @@
 </header>
 
     <main class="container">
-        <h2>All Products</h2>
+        <h2 style="color: black;">All Products</h2>
         <div id="product-list" class="products-grid"></div>
     </main>
 
 <footer class="container">
   <p>&copy; 2025 MyShop.</p>
+  <p>Email: support@myshop.com</p>
+  <p>Address: 123 Main Street, Casablanca, Morocco</p>
+  <p>+212 6 23 64 85 02</p>
+  <p>+212 6 23 64 85 02</p>
 </footer>
 
 
@@ -47,7 +51,7 @@
                     <img src="${product.img}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
-                    <p>$${product.price.toFixed(2)}</p>
+                    <p>MAD ${product.price.toFixed(2)}</p>
                     <p>In stock: ${product.stock}</p>
                     <a href="product.html?id=${product.id}" class="button">View Details</a>
                 `;

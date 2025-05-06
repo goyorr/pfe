@@ -21,9 +21,9 @@ function loadCart() {
       </div>
       <div class="cart-item-details">
         <p><strong>${item.name}</strong></p>
-        <p>Price: $${item.price.toFixed(2)}</p>
+        <p>Price: MAD ${item.price.toFixed(2)}</p>
         <p>Quantity: ${item.quantity}</p>
-        <p>Subtotal: $${(item.price * item.quantity).toFixed(2)}</p>
+        <p>Subtotal: MAD ${(item.price * item.quantity).toFixed(2)}</p>
         <button class="remove-item" data-index="${index}">Remove</button>
       </div>
     `;
@@ -31,7 +31,7 @@ function loadCart() {
     total += item.price * item.quantity;
   });
 
-  totalPriceEl.textContent = `Total: $${total.toFixed(2)}`;
+  totalPriceEl.textContent = `Total: MAD ${total.toFixed(2)}`;
 
   const removeButtons = document.querySelectorAll('.remove-item');
   removeButtons.forEach(button => {

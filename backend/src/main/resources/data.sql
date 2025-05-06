@@ -1,5 +1,5 @@
 INSERT INTO product (name, description, price, stock, img) VALUES
-('Laptop', 'High performance laptop', 1200.00, 10, 'https://fastly.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI'),
+('Laptop', 'High performance laptopigh performance laptopigh performance laptopigh performance laptopigh performance laptopigh performance ', 1200.00, 10, 'https://fastly.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI'),
 ('Smartphone', 'Latest model smartphone', 800.00, 25, 'https://fastly.picsum.photos/id/39/3456/2304.jpg?hmac=cc_VPxzydwTUbGEtpsDeo2NxCkeYQrhTLqw4TFo-dIg'),
 ('Headphones', 'Noise cancelling headphones', 150.00, 50, 'https://fastly.picsum.photos/id/42/3456/2304.jpg?hmac=dhQvd1Qp19zg26MEwYMnfz34eLnGv8meGk_lFNAJR3g'),
 ('Phone', 'Phone', 90.00, 30, 'https://fastly.picsum.photos/id/45/4592/2576.jpg?hmac=Vc7_kMYufvy96FxocZ1Zx6DR1PNsNQXF4XUw1mZ2dlc'),

@@ -10,7 +10,7 @@
     <body>
         <header>
             <div class="container">
-                <h1>MyShop</h1>
+                <h1>MyShopInfo</h1>
                 <nav>
                     <a href="index.html">Home</a>
                     <a href="products.html">Products</a>
@@ -48,7 +48,7 @@
                             <img src="${product.img}" alt="${product.name}">
                             <h3>${product.name}</h3>
                             <p>${product.description}</p>
-                            <p>$${product.price.toFixed(2)}</p>
+                            <p>MAD ${product.price.toFixed(2)}</p>
                             <p>In stock: ${product.stock}</p>
                             <a href="product.html?id=${product.id}" class="button">View Details</a>
                         `;
