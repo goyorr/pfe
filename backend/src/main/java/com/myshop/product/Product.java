@@ -28,4 +28,7 @@ public class Product {
     private int stock;
 
     private String img;
+
+    @NotBlank
+    private String category;
 }

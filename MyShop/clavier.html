@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MyShop - Products</title>
+  <title>MyShop - Clavier</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
@@ -45,13 +45,19 @@
 <script>
     async function loadProducts() {
         try {
+
+            const category = 'clavier';
+
             const response = await fetch('http://localhost:8080/api/products');
             const products = await response.json();
+
+            const filteredProducts = products.filter(product => product.category.toLowerCase() === category.toLowerCase());
+
             const productList = document.getElementById('product-list');
 
             productList.innerHTML = '';
 
-            products.forEach(product => {
+            filteredProducts.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
 

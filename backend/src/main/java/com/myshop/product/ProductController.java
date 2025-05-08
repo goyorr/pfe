@@ -49,6 +49,10 @@ public class ProductController {
                     product.setImg(updatedProduct.getImg());
                 }
 
+                if (updatedProduct.getCategory() != null) {
+                    product.setCategory(updatedProduct.getCategory());
+                }
+
                 Product savedProduct = productRepository.save(product);
                 return ResponseEntity.ok(savedProduct);
             })
