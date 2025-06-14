@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr"></html>
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>LAPit - Home</title>
+      <title>LAPit - Accueil</title>
       <link rel="stylesheet" href="css/style.css">
       <link rel="icon" href="favicon.ico" type="image/x-icon">
     </head>
@@ -12,34 +12,34 @@
             <div class="container">
                 <h1>LAPitInfo</h1>
                 <nav>
-                    <a href="index.html">Home</a>
+                    <a href="index.html">Accueil</a>
                     <a href="products.html">Tous les produits</a>
                   
                     <div class="dropdown">
-                      <button class="dropbtn">Categories</button>
+                      <button class="dropbtn">Catégories</button>
                       <div class="dropdown-content">
-                        <a href="pcportable.html">Pc portable</a>
+                        <a href="pcportable.html">PC portable</a>
                         <a href="casque.html">Casque</a>
                         <a href="clavier.html">Clavier</a>
                         <a href="souris.html">Souris</a>
                       </div>
                     </div>
                   
-                    <a href="cart.html">Cart</a>
+                    <a href="cart.html">Panier</a>
                     <!-- <a href="admin/index.html">Admin</a> -->
                   </nav>
             </div>
         </header>
 
         <main class="container">
-            <h2>Featured Products</h2>
+            <h2>Produits en vedette</h2>
             <div id="product-list-home" class="products-grid-home"></div>
         </main>
 
         <footer class="container">
             <p>&copy; 2025 LAPit.</p>
-            <p>Email: support@LAPit.com</p>
-            <p>Address: 123 Main Street, Casablanca, Morocco</p>
+            <p>Email : support@LAPit.com</p>
+            <p>Adresse : 123 Rue Principale, Casablanca, Maroc</p>
             <p>+212 6 23 64 85 02</p>
             <p>+212 6 23 64 85 02</p>
           </footer>
@@ -62,21 +62,21 @@
                             <img src="${product.img}" alt="${product.name}">
                             <h3>${product.name}</h3>
                             <p>${product.description}</p>
-                            <p>MAD ${product.price.toFixed(2)}</p>
-                            <p>In stock: ${product.stock}</p>
-                            <a href="product.html?id=${product.id}" class="button">View Details</a>
+                            <p>${product.price.toFixed(2)} MAD</p>
+                            <p>En stock : ${product.stock}</p>
+                            <a href="product.html?id=${product.id}" class="button">Voir les détails</a>
                         `;
 
                         productList.appendChild(productCard);
                     });
 
                     if (products.length === 0) {
-                        productList.innerHTML = '<p>No products available at this time.</p>';
+                        productList.innerHTML = '<p>Aucun produit disponible pour le moment.</p>';
                     }
                 } catch (error) {
-                    console.error('Error loading products:', error);
+                    console.error('Erreur lors du chargement des produits :', error);
                     document.getElementById('product-list').innerHTML = 
-                        '<p>Error loading products. Please try again later.</p>';
+                        '<p>Erreur lors du chargement des produits. Veuillez réessayer plus tard.</p>';
                 }
             }   
 

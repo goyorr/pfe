@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LAPit - Product</title>
+  <title>LAPit - Produit</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
@@ -25,7 +25,6 @@
       opacity: 1;
       visibility: visible;
     }
-    /* Disable button style for out of stock */
     .out-of-stock {
       background-color: #aaa;
       cursor: not-allowed;
@@ -37,20 +36,18 @@
     <div class="container">
       <h1>LAPitInfo</h1>
       <nav>
-        <a href="index.html">Home</a>
+        <a href="index.html">Accueil</a>
         <a href="products.html">Tous les produits</a>
-      
         <div class="dropdown">
-          <button class="dropbtn">Categories</button>
+          <button class="dropbtn">Catégories</button>
           <div class="dropdown-content">
-            <a href="pcportable.html">Pc portable</a>
+            <a href="pcportable.html">PC portable</a>
             <a href="casque.html">Casque</a>
             <a href="clavier.html">Clavier</a>
             <a href="souris.html">Souris</a>
           </div>
         </div>
-      
-        <a href="cart.html">Cart</a>
+        <a href="cart.html">Panier</a>
         <!-- <a href="admin/index.html">Admin</a> -->
       </nav>
     </div>
@@ -58,28 +55,25 @@
 
   <main class="container">
     <div class="product-detail">
-      <!-- Image will be updated dynamically -->
-      <img id="product-image" src="" alt="Product Detail">
+      <img id="product-image" src="" alt="Détail du produit">
       <div>
-        <!-- Product details will be updated dynamically -->
         <h2 id="product-name"></h2>
-        <p><strong>Price:</strong> <span id="product-price"></span></p>
-        <p><strong>Stock:</strong> <span id="product-stock"></span> available</p>
+        <p><strong>Prix :</strong> <span id="product-price"></span></p>
+        <p><strong>Stock :</strong> <span id="product-stock"></span> disponible(s)</p>
         <p id="product-description"></p>
-        <button id="add-to-cart-btn" class="button" onclick="addToCart()">Add to Cart</button>
+        <button id="add-to-cart-btn" class="button" onclick="addToCart()">Ajouter au panier</button>
       </div>
     </div>
   </main>
 
   <footer class="container">
     <p>&copy; 2025 LAPit.</p>
-    <p>Email: support@LAPit.com</p>
-    <p>Address: 123 Main Street, Casablanca, Morocco</p>
+    <p>Email : support@LAPit.com</p>
+    <p>Adresse : 123 Rue Principale, Casablanca, Maroc</p>
     <p>+212 6 23 64 85 02</p>
     <p>+212 6 23 64 85 02</p>
   </footer>
-  <!-- Toast notification -->
-  <div id="toast" class="toast">Product added to cart!</div>
+  <div id="toast" class="toast">Produit ajouté au panier !</div>
 
   <script src="js/app.js"></script>
   <script>
@@ -96,7 +90,6 @@
       img: ''
     };
     
-    // Fetch product data from backend API
     fetchProductData();
     
     function fetchProductData() {
@@ -112,31 +105,29 @@
             producttoadd.description = product.description;
             producttoadd.img = product.img;
 
-            // Update the page with the product details
             document.getElementById('product-name').textContent = product.name;
-            document.getElementById('product-price').textContent = `$${product.price.toFixed(2)}`;
+            document.getElementById('product-price').textContent = `${product.price.toFixed(2)} €`;
             document.getElementById('product-stock').textContent = product.stock;
             document.getElementById('product-description').textContent = product.description;
             document.getElementById('product-image').src = product.img;
 
-            // Disable button if stock is 0
             if (product.stock <= 0) {
               document.getElementById('add-to-cart-btn').disabled = true;
               document.getElementById('add-to-cart-btn').classList.add('out-of-stock');
             }
           } else {
-            alert('Product not found!');
+            alert('Produit non trouvé !');
           }
         })
         .catch(error => {
-          console.error('Error fetching product data:', error);
-          alert('There was an error fetching the product details.');
+          console.error('Erreur lors de la récupération des données du produit :', error);
+          alert('Une erreur est survenue lors de la récupération des détails du produit.');
         });
     }
 
     function addToCart() {
       if (!producttoadd.name || producttoadd.stock <= 0) {
-        showToast('Product is out of stock!');
+        showToast('Produit en rupture de stock !');
         return;
       }
 
@@ -162,7 +153,7 @@
 
       updateProductStock(productId, producttoadd.stock - 1);
 
-      showToast('Product added to cart!');
+      showToast('Produit ajouté au panier !');
     }
 
     function showToast(message) {
@@ -188,7 +179,7 @@
       .then(response => response.json())
       .then(data => {
         if (data) {
-          console.log('Product stock updated successfully');
+          console.log('Stock du produit mis à jour avec succès');
           
           document.getElementById('product-stock').textContent = newStock;
           
@@ -199,11 +190,11 @@
           
           producttoadd.stock = newStock; 
         } else {
-          console.error('Error updating product stock');
+          console.error('Erreur lors de la mise à jour du stock du produit');
         }
       })
       .catch(error => {
-        console.error('Error updating stock:', error);
+        console.error('Erreur lors de la mise à jour du stock :', error);
       });
     }
   </script>
