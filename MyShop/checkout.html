@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MyShop - Checkout</title>
+  <title>LAPit - Paiement</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
@@ -11,32 +11,37 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      max-width: 400px;
+      max-width: 600px;
       margin: 0 auto;
     }
 
     #checkout-form label {
       font-weight: bold;
       margin-bottom: 5px;
-      margin-top: 10px;
+      display: block;
     }
 
-    #checkout-form input {
+    #checkout-form input,
+    #checkout-form select {
       padding: 10px;
       font-size: 16px;
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     #checkout-form button {
-      padding: 10px 20px;
+      padding: 12px 20px;
       font-size: 16px;
       background-color: #4CAF50;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      margin-top: 10px;
+      width: 100%;
     }
 
     #checkout-form button:hover {
@@ -47,7 +52,7 @@
       padding: 20px;
     }
 
-    h2 {
+    h2, h3 {
       text-align: center;
       margin-bottom: 20px;
     }
@@ -56,66 +61,204 @@
       text-align: center;
       margin-top: 20px;
     }
+
+    .payment-method {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .payment-option {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      right: 10px;
+    }
+
+    .payment-option input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .col {
+      flex: 1;
+    }
+
+    .card-details {
+      margin-top: 15px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
 <header>
   <div class="container">
-    <h1>MyShopInfo</h1>
+    <h1>LAPitInfo</h1>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="index.html">Accueil</a>
       <a href="products.html">Tous les produits</a>
     
       <div class="dropdown">
-        <button class="dropbtn">Categories</button>
+        <button class="dropbtn">Catégories</button>
         <div class="dropdown-content">
-          <a href="pcportable.html">Pc portable</a>
+          <a href="pcportable.html">PC portable</a>
           <a href="casque.html">Casque</a>
           <a href="clavier.html">Clavier</a>
           <a href="souris.html">Souris</a>
         </div>
       </div>
     
-      <a href="cart.html">Cart</a>
-      <!-- <a href="admin/index.html">Admin</a> -->
+      <a href="cart.html">Panier</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
-  <h2>Checkout</h2>
+  <h2>Finalisation de la commande</h2>
   <form id="checkout-form">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br>
+    <h3>Informations de livraison</h3>
+    
+    <div class="row">
+      <div class="col">
+        <label for="name">Nom complet:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        <label for="address">Adresse:</label>
+        <input type="text" id="address" name="address" required>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        <label for="city">Ville:</label>
+        <input type="text" id="city" name="city" required>
+      </div>
+      <div class="col">
+        <label for="postal-code">Code postal:</label>
+        <input type="text" id="postal-code" name="postal-code" required>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        <label for="country">Pays:</label>
+        <input type="text" id="country" name="country" required>
+      </div>
+      <div class="col">
+        <label for="phone">Téléphone:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+    </div>
 
-    <label for="address">Address:</label>
-    <input type="text" id="address" name="address" required><br>
+    <div class="payment-method">
+      <h3>Carte de crédit/débit</h3>
 
-    <label for="city">City:</label>
-    <input type="text" id="city" name="city" required><br>
+      <div id="card-details" class="card-details">
+        <div class="row">
+          <div class="col">
+            <label for="card-number">Numéro de carte:</label>
+            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col">
+            <label for="card-name">Nom sur la carte:</label>
+            <input type="text" id="card-name" name="card-name" required>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col">
+            <label for="expiry-date">Date d'expiration:</label>
+            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
+          </div>
+          <div class="col">
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" placeholder="123" required>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <label for="postal-code">Postal Code:</label>
-    <input type="text" id="postal-code" name="postal-code" required><br>
-
-    <label for="country">Country:</label>
-    <input type="text" id="country" name="country" required><br>
-
-    <button type="submit">Place Order</button>
+    <button type="submit">Confirmer la commande</button>
   </form>
 </main>
 
 <footer class="container">
-  <p>&copy; 2025 MyShop.</p>
-  <p>Email: support@myshop.com</p>
-  <p>Address: 123 Main Street, Casablanca, Morocco</p>
-  <p>+212 6 23 64 85 02</p>
-  <p>+212 6 23 64 85 02</p>
+  <p>&copy; 2025 LAPit.</p>
+  <p>Email : support@LAPit.com</p>
+  <p>Adresse : 123 Rue Principale, Casablanca, Maroc</p>
+  <p>Téléphone : +212 6 23 64 85 02</p>
 </footer>
+
 <script src="js/app.js"></script>
 <script>
   document.getElementById('checkout-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    alert('Order placed successfully!');
+    
+    // Validate card details if card payment is selected
+    const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+    if (paymentMethod === 'card') {
+      const cardNumber = document.getElementById('card-number').value;
+      const cardName = document.getElementById('card-name').value;
+      const expiryDate = document.getElementById('expiry-date').value;
+      const cvv = document.getElementById('cvv').value;
+      
+      if (!cardNumber || !cardName || !expiryDate || !cvv) {
+        alert('Veuillez remplir tous les détails de la carte');
+        return;
+      }
+      
+      // Simple validation for card number (just checking length)
+      if (cardNumber.replace(/\s/g, '').length < 16) {
+        alert('Veuillez entrer un numéro de carte valide (16 chiffres)');
+        return;
+      }
+      
+      // Validate expiry date format
+      if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+        alert('Veuillez entrer la date d\'expiration au format MM/AA');
+        return;
+      }
+      
+      // Validate CVV length
+      if (cvv.length < 3 || cvv.length > 4) {
+        alert('Veuillez entrer un CVV valide (3 ou 4 chiffres)');
+        return;
+      }
+    }
+    
+    alert('Commande passée avec succès !');
+    // Here you would typically send the form data to your server
+  });
+
+  // Toggle card details visibility based on payment method
+  const paymentOptions = document.querySelectorAll('input[name="payment"]');
+  const cardDetails = document.getElementById('card-details');
+  
+  paymentOptions.forEach(option => {
+    option.addEventListener('change', function() {
+      cardDetails.style.display = this.value === 'card' ? 'block' : 'none';
+      
+      // Toggle required attribute on card fields
+      const cardFields = cardDetails.querySelectorAll('input');
+      cardFields.forEach(field => {
+        field.required = this.value === 'card';
+      });
+    });
   });
 </script>
 </body>
