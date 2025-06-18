@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Gestion des Produits</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="container">
+     <h1 >LAPit</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Tous les produits</a>
+      
+        <div class="dropdown">
+          <button class="dropbtn">Categories</button>
+          <div class="dropdown-content">
+            <a href="pcportable.html">Pc portable</a>
+            <a href="casque.html">Casque</a>
+            <a href="clavier.html">Clavier</a>
+            <a href="souris.html">Souris</a>
+        </div>
+        </div>
+        <a href="admin.html">Admin</a>
+    </nav>
+</div>
+      
+  </div>
+</header>
+
+  <main class="container">
+    <h2>Ajouter un produit</h2>
+    <form id="product-form">
+      <input type="text" placeholder="Nom" id="name" required>
+      <input type="text" placeholder="Description" id="description" required>
+      <input type="number" placeholder="Prix" id="price" step="0.01" required>
+      <input type="number" placeholder="Stock" id="stock" required>
+      <input type="text" placeholder="Image URL" id="img" required>
+      <select id="category" required>
+        <option value="pcportable">PC Portable</option>
+        <option value="clavier">Clavier</option>
+        <option value="souris">Souris</option>
+        <option value="casque">Casque</option>
+      </select>
+      <button type="submit">Ajouter</button>
+    </form>
+
+    <h2>Produits existants</h2>
+    <table id="product-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Stock</th>
+          <th>Catégorie</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script>
+    const form = document.getElementById('product-form');
+    const tableBody = document.querySelector('#product-table tbody');
+
+    async function loadProducts() {
+    const res = await fetch('http://localhost:8080/api/products');
+      const products = await res.json();
+      tableBody.innerHTML = '';
+      products.forEach(p => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${p.name}</td>
+          <td>${p.price} DH</td>
+          <td>${p.stock}</td>
+          <td>${p.category}</td>
+          <td><button onclick="deleteProduct(${p.id})">Supprimer</button></td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const product = {
+        name: form.name.value,
+        description: form.description.value,
+        price: parseFloat(form.price.value),
+        stock: parseInt(form.stock.value),
+        img: form.img.value,
+        category: form.category.value
+      };
+
+        await fetch('http://localhost:8080/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+      });
+
+      form.reset();
+      loadProducts();
+    });
+
+    async function deleteProduct(id) {
+      await fetch(`http://localhost:8080/api/products/${id}`, { method: 'DELETE' });
+      loadProducts();
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>
